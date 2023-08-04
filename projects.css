@@ -4,6 +4,20 @@ body {
 
     background-color: var(--bg);
     color: var(--fg);
+
+    margin: 10px 20%;
+}
+
+@media screen and (max-width: 600px) {
+    body {
+	font-size: 12px;
+	margin: 10px 5%;
+    }
+
+    nav {
+	display: flex;
+	gap: 5px;
+    }
 }
 
 a {
@@ -22,6 +36,5 @@ nav {
 
 #projects {
     padding: 10px;
-    /* text-align: center; */
-    margin: 10px 300px;
 }
+
