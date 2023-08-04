@@ -1,0 +1,80 @@
+/* css file for creating box-like constructs */
+
+/* box */
+.box_container {
+    display: flex;
+    flex-wrap: wrap;
+
+    align-items: center;
+    justify-content: center;
+    margin: 0px 100px;
+    gap: 10px;
+}
+
+.box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    height: 100px;
+    width: 25%;
+    padding: 10px;
+
+    background-color: var(--alt-bg);
+    box-shadow: 5px 5px var(--shadow);
+    border-radius: 5px;
+
+    transition: 0.5s;
+}
+
+.box a {
+    text-decoration: none;
+}	
+
+.box:hover {
+    color: var(--sel-fg);
+    background-color: var(--sel-bg);
+
+    transform: scale(1.05);
+}
+
+/* grid */
+grid-container {
+    display: grid;                                                
+    grid-auto-rows: 50px;                                         
+    grid-gap: 10px;                                               
+    grid-template-columns: repeat(auto-fill, minmax(20%, 1fr));   
+}
+
+[small] {
+    grid-row: span 2;
+    background-color: var(--green);
+}
+
+[medium] {
+    grid-row: span 3;
+    background-color: var(--blue);
+}
+
+[large] {
+    grid-row: span 4;
+    background-color: var(--red); 
+}
+
+grid-item {
+    color: var(--bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 5px;
+    transition: 0.5s;
+}
+
+grid-item:hover {
+    color: var(--sel-fg);
+    background-color: var(--sel-bg);
+
+    transform: scale(1.05);
+}
