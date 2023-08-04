@@ -1,0 +1,27 @@
+body {
+    font-family: Arial;
+    font-size: 18px;
+
+    background-color: var(--bg);
+    color: var(--fg);
+}
+
+a {
+    color: inherit;
+}
+
+nav {
+    font-size: 22px;
+
+    display: flex;
+    justify-content: center;
+
+    gap: 30px;
+    margin: 35px 0px;
+}
+
+#projects {
+    padding: 10px;
+    /* text-align: center; */
+    margin: 10px 300px;
+}
