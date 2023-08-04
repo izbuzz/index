@@ -7,6 +7,7 @@ toggle.addEventListener("click", event => {
 	// dark mode to light mode
 	const current = localStorage.getItem("theme");
 
+	// switch current theme
 	if (current === "dark") {
 	    document.documentElement.dataset.theme = "light";
 	    localStorage.setItem("theme", "light");
@@ -17,13 +18,13 @@ toggle.addEventListener("click", event => {
 	    return;
 	} 
 
+	// handle no preferences
 	if (prefersDark.matches) {
 	    document.documentElement.dataset.theme = "dark";
 	    localStorage.setItem("theme", "dark");
 	} else {
 	    document.documentElement.dataset.theme = "light";
 	    localStorage.setItem("theme", "light");
-		
 	}
 
 	// might revisit these later
