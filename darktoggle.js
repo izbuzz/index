@@ -3,41 +3,15 @@ const toggle = document.getElementById("darkmode-toggle");
 // whether the user prefersDark
 const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
 
-toggle.addEventListener("click", event => {
-	// dark mode to light mode
-	const current = localStorage.getItem("theme");
-
-	// switch current theme
-	if (current === "dark") {
-	    document.documentElement.dataset.theme = "light";
-	    localStorage.setItem("theme", "light");
-	    return;
-	} else if (current === "light") {
-	    document.documentElement.dataset.theme = "dark";
-	    localStorage.setItem("theme", "dark");
-	    return;
-	} 
-
-	// handle no preferences
-	if (prefersDark.matches) {
-	    document.documentElement.dataset.theme = "dark";
-	    localStorage.setItem("theme", "dark");
-	} else {
-	    document.documentElement.dataset.theme = "light";
-	    localStorage.setItem("theme", "light");
-	}
-
-	// might revisit these later
-	// if (prefersDark.matches) {
-	//     // document.body.classList.toggle("light-mode");
-	//     document.documentElement.dataset.theme = "light";
-	//     // theme = document.body.classList.contains("light-mode") ? "light" : "dark";
-	//     theme = document.documentElement.getAttribute("data-theme") === "light" ? "light" : "dark";
-	// } else {
-	//     // document.body.classList.toggle("dark-mode");
-	//     document.documentElement.dataset.theme = "dark";
-	//     // theme = document.body.classList.contains("dark-mode") ? "dark" : "light";
-	//     theme = document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light";
-	// }
-	// localStorage.setItem("theme", theme);
+toggle.addEventListener("click", (event) => {
+  let theme;
+  // prevents having to press the button twice because theme is empty
+  if (prefersDark.matches) {
+    document.documentElement.classList.toggle("light-mode");
+    theme = document.documentElement.classList.contains("light-mode") ? "light" : "dark";
+  } else {
+    document.documentElement.classList.toggle("dark-mode");
+    theme = document.documentElement.classList.contains("dark-mode") ? "dark" : "light";
+  }
+  localStorage.setItem("theme", theme);
 });

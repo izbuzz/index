@@ -1,10 +1,9 @@
-const currentTheme = localStorage.getItem("theme");
+const theme = localStorage.getItem("theme");
 
-if (currentTheme === "dark") {
-    // document.body.classList.toggle("dark-mode");
-    document.documentElement.dataset.theme = "dark";
-} else {
-    // document.body.classList.toggle("light-mode");
-    document.documentElement.dataset.theme = "light";
+if (theme === "dark") {
+  document.documentElement.classList.toggle("dark-mode");
+} else if (theme === "light") {
+  document.documentElement.classList.toggle("light-mode");
 }
-
+// if currentTheme is null, the theme will be chosen based on
+// the user's OS preferences via prefers-color-scheme
