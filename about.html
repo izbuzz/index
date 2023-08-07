@@ -1,69 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width,initial-scale=1" />
-	<title>about</title>
-	<link rel="stylesheet" href="color.css">
-	<link rel="stylesheet" href="box.css">
-	<link rel="stylesheet" href="style.css">
-	<script src="dark.js"></script>
-	<script defer src="show.js"></script>
-    </head>
-    <body>
-	<nav>
-	    <a href="index.html">home</a>
-	    <a href="notes.html">notes</a>
-	    <a href="projects.html">projects</a>
-	    <a href="about.html">about</a>
-	    <button id="darkmode-toggle">darkmode</button>
-	</nav>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>about</title>
+  <link rel="stylesheet" href="color.css">
+  <link rel="stylesheet" href="box.css">
+  <link rel="stylesheet" href="style.css">
+  <script src="dark.js"></script>
+  <script defer src="show.js"></script>
+</head>
+<body>
+  <nav>
+    <a href="index.html">~</a>
+    <a href="notes.html">notes</a>
+    <a href="projects.html">projects</a>
+    <a href="about.html">about</a>
+    <button id="darkmode-toggle">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="light-icon"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="dark-icon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+    </button>
+  </nav>
 
-	<div id="about">
-	    <h1>About Me<hr/></h1>
-	    Making and breaking everything, even bugs.<br/>
-	    Pursuing computer science, and stumbling on the way.<br/>
-	    Sometimes I stumble backward, other times I stumble
-	    backward.
-	</div>
+  <div id="about">
+    <h1>About Me<hr/></h1>
+    A student pursuing computer science.<br/>
+    Interested in systems and graphics programming.<br/>
+    Currently dabbling in web technologies.
+  </div>
 
-	<div id="contacts">
-	    <h2>Contacts<hr/></h2>
-	    <div class="box_container">
-		<div class="box">linkedln</div>
-		<div class="box"><a href="https://github.com/">github</a></div>
-		<div class="box">email</div>
+  <div id="contacts">
+    <h2>Contacts<hr/></h2>
+    <div class="box_container">
+      <div class="box">linkedln</div>
+      <div class="box"><a href="https://github.com/">github</a></div>
+      <div class="box">email</div>
 
-		<div class="box">mail</div>
-		<div class="box">orbital satellite</div>
-		<div class="box">home</div>
-	    </div>
-	</div>
+      <div class="box">mail</div>
+      <div class="box">orbital satellite</div>
+      <div class="box">home</div>
+    </div>
+  </div>
 
-	<div id="interests">
-	    <h2>
-		Interests and Time Occupation 
-		<button id="show-interests">^</button>
-		<hr/>
-	    </h2>
-	    <grid-container id="interests-container">
-		<grid-item small>life</grid-item>
-		<grid-item medium>engine</grid-item>
-		<grid-item large>coding</grid-item>
+  <div id="interests">
+    <h2>
+      Interests and Time Occupation 
+      <button id="show-interests">^</button>
+      <hr/>
+    </h2>
+    <grid-container id="interests-container">
+      <grid-item small>life</grid-item>
+      <grid-item medium>engine</grid-item>
+      <grid-item large>coding</grid-item>
 
-		<grid-item small>html</grid-item>
-		<grid-item medium>allstar code</grid-item>
-		<grid-item large>memory</grid-item>
+      <grid-item small>html</grid-item>
+      <grid-item medium>allstar code</grid-item>
+      <grid-item large>memory</grid-item>
 
-		<grid-item medium>drawing</grid-item>
-		<grid-item large>school</grid-item>
-		<grid-item large>terraria</grid-item>
+      <grid-item medium>drawing</grid-item>
+      <grid-item large>school</grid-item>
+      <grid-item large>terraria</grid-item>
 
-		<grid-item small>small</grid-item>
-		<grid-item large>large</grid-item>
-		<grid-item medium>medium</grid-item>
-	    </grid-container>
-	</div>
-	<script src="darktoggle.js"></script>
-    </body>
+      <grid-item small>small</grid-item>
+      <grid-item large>large</grid-item>
+      <grid-item medium>medium</grid-item>
+    </grid-container>
+  </div>
+  <script src="darktoggle.js"></script>
+</body>
 </html>
