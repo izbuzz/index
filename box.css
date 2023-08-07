@@ -1,5 +1,7 @@
 /* css file for creating box-like constructs */
 
+/* TODO: Margins are messy, should fix later */
+
 /* box */
 .box_container {
     display: flex;
@@ -39,16 +41,6 @@
     transform: scale(1.05);
 }
 
-@media screen and (max-width: 600px) {
-    .box_container {
-    	margin: 0px 20%;
-    }
-    .box {
-	height: 50px;
-	width: 25%;
-    }
-}
-
 /* grid */
 /* TODO: use a class for this rather than directly editing grid-container */
 grid-container {
@@ -56,15 +48,6 @@ grid-container {
     grid-auto-rows: 50px;                                         
     grid-gap: 10px;                                               
     grid-template-columns: repeat(auto-fill, minmax(20%, 1fr));   
-}
-
-@media screen and (max-width: 600px) {
-    grid-container {
-	display: grid;                                                
-	grid-auto-rows: 20px;                                         
-	grid-gap: 10px;                                               
-	grid-template-columns: repeat(auto-fill, minmax(50%, 1fr));   
-    }
 }
 
 [small] {
@@ -97,4 +80,24 @@ grid-item:hover {
     background-color: var(--sel-bg);
 
     transform: scale(1.05);
+}
+
+/* || Responsive Design */
+@media screen and (max-width: 600px) {
+    .box_container {
+    	margin: 0px 20%;
+    }
+
+    .box {
+	height: 50px;
+	width: 25%;
+    }
+
+    /* list rows rather than grid */
+    grid-container {
+	display: grid;                                                
+	grid-auto-rows: 20px;                                         
+	grid-gap: 10px;                                               
+	grid-template-columns: repeat(auto-fill, minmax(50%, 1fr));   
+    }
 }

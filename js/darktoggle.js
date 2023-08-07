@@ -9,8 +9,8 @@ const darkIcon = document.getElementById("dark-icon");
 
 // get the current theme, if it is null, 
 // set to dark if the user's prefers dark. Otherwise, set it to light
-const currentTheme = localStorage.getItem("theme") ?? prefersDark.matches ? "dark" : "light";
-showButtonIcon(currentTheme)
+const currentTheme = localStorage.getItem("theme") ?? (prefersDark.matches ? "dark" : "light");
+showButtonIcon(currentTheme);
 
 toggle.addEventListener("click", (event) => {
   let theme;
