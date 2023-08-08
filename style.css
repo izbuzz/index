@@ -101,6 +101,74 @@ nav {
   text-align: center;
 }
 
+/* || Box and Grid Styling */
+.box_container {
+    display: flex;
+    flex-wrap: wrap;
+
+    align-items: center;
+    justify-content: center;
+    margin: 0px 100px;
+    gap: 10px;
+}
+
+.box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    height: 100px;
+    width: 25%;
+    padding: 10px;
+
+    background-color: var(--alt-bg);
+    box-shadow: 5px 5px var(--shadow);
+    border-radius: 5px;
+
+    transition: 0.5s;
+}
+
+/* TODO: use a class for this rather than directly editing grid-container */
+grid-container {
+    display: grid;                                                
+    grid-auto-rows: 50px;                                         
+    grid-gap: 10px;                                               
+    grid-template-columns: repeat(auto-fill, minmax(20%, 1fr));   
+}
+
+[small] {
+    grid-row: span 2;
+    background-color: var(--green);
+}
+
+[medium] {
+    grid-row: span 3;
+    background-color: var(--blue);
+}
+
+[large] {
+    grid-row: span 4;
+    background-color: var(--red); 
+}
+
+grid-item {
+    color: var(--bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 5px;
+    transition: 0.5s;
+}
+
+grid-item:hover .box:hover {
+    color: var(--sel-fg);
+    background-color: var(--sel-bg);
+
+    transform: scale(1.05);
+}
+
 /* || Responsive design */
 @media screen and (max-width: 600px) {
   body {
@@ -110,12 +178,29 @@ nav {
 
   /* reduce gaps on mobile */
   nav {
-    display: flex;
-    gap: 10px;
+    gap: 15px;
   }
 
   #refs {
     display: flex;
     gap: 10px;
+  }
+
+  /* reduce margins of boxes */
+  .box_container {
+    margin: 0px 20%;
+  }
+
+  .box {
+    height: 50px;
+    width: 25%;
+  }
+
+  /* use rows rather than grid */
+  grid-container {
+    display: grid;                                                
+    grid-auto-rows: 20px;                                         
+    grid-gap: 10px;                                               
+    grid-template-columns: repeat(auto-fill, minmax(50%, 1fr));   
   }
 }
