@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>opengl</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="../templates/template.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<script src="../js/dark.js"></script>
+</head>
+<body>
+<nav id="navbar">
+  <a href="index.html">~</a>
+  <a href="notes.html">notes</a>
+  <a href="projects.html">projects</a>
+  <a href="about.html">about</a>
+  <button id="darkmode-toggle">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="light-icon"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="dark-icon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+  </button>
+</nav>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#opengl" id="toc-opengl">Opengl</a>
+<ul>
+<li><a href="#startup" id="toc-startup">Startup</a></li>
+<li><a href="#shaders" id="toc-shaders">Shaders</a></li>
+<li><a href="#buffers" id="toc-buffers">Buffers</a>
+<ul>
+<li><a href="#uploading-data" id="toc-uploading-data">Uploading
+Data</a></li>
+<li><a href="#describing-data" id="toc-describing-data">Describing
+Data</a></li>
+</ul></li>
+<li><a href="#rendering" id="toc-rendering">Rendering</a></li>
+</ul></li>
+</ul>
+</nav>
+<p>last updated: Wed Jun 28 09:10:33 PM EDT 2023</p>
+<h1 id="opengl">Opengl</h1>
+<p>A large state machine under the hood. All Opengl structures are
+represented as GLuint.</p>
+<h2 id="startup">Startup</h2>
+<p>An Opengl context must be obtained, this can be done through native
+apis or platform abstraction libraries like SDL or GLFW. Context can be
+switched between windows as well.</p>
+<p>Additionally in <strong>4.6</strong>, a debug output can be set up
+for error catching rather than calls to <code>glGetError(void)</code>
+and can be done trivally:</p>
+<pre><code>glEnable(GL_DEBUG_OUTPUT);
+glDebugMessageCallback(callback, nullptr);
+void callback(GLenum source, 
+              GLenum type, 
+              GLuint id, 
+              GLenum severity, 
+              GLsizei length, 
+              const GLchar* message, 
+              const void*  user_param)</code></pre>
+<p>This is more efficient and can be used with <code>if (DEBUG)</code>
+statements rather than sprinkling <code>glGetError</code>.</p>
+<h2 id="shaders">Shaders</h2>
+<h2 id="buffers">Buffers</h2>
+<p>Buffers are used to transfer data used to render to the screen.</p>
+<pre><code>glGenBuffers(1, &amp;vbo);
+glBindBuffer(GL_ARRAY_BUFFER, vbo);</code></pre>
+<p>Note the binding call, which can be eliminated in Direct State Access
+(DSA)</p>
+<pre><code>glCreateBuffers(1, &amp;vbo);</code></pre>
+<p>The buffer can no be edited without binding first, but only through
+dedicated calls.</p>
+<h3 id="uploading-data">Uploading Data</h3>
+<p>TODO: https://www.khronos.org/opengl/wiki/Buffer_Object_Streaming
+https://www.opengl-tutorial.org/intermediate-tutorials/billboards-particles/particles-instancing/
+Uploading data requires: - buffer type <strong>or</strong> id of the
+buffer - total size of the data - address of the data - an usage enum
+GL_DYNAMIC_DRAW, GL_STREAM_DRAW or GL_STATIC_DRAW are the main usage
+enums.</p>
+<pre><code>glBufferData(GL_ARRAY_BUFFER, size, vertices, GL_DYNAMIC_STORAGE_BIT);
+/* DSA: vbo is the GLuint representing the array buffer */
+glNamedBufferData(vbo, size, vertices, GL_DYNAMIC_STORAGE_BIT);
+
+/* Variants with an offset, might be better for updating buffers */
+glBufferSubData(GL_ARRAY_BUFFER, offset, size, vertices);
+glNamedBufferSubData(vbo, offset, size, vertices);</code></pre>
+<h3 id="describing-data">Describing Data</h3>
+<p>Vertex Array Objects describe the format of the data for the
+shaders.</p>
+<pre><code>glGenVertexArrays(1, &amp;vao);
+glBindVertexArray(vao);
+... Bind and upload buffer data ...
+
+/* or in DSA */
+glCreateVertexArrays(1, &amp;vao);
+/* second param is binding index of buffer and third index is offset */
+glVertexArrayVertexBuffer(vao, 0, vbo, 0, sizeof(vertex));</code></pre>
+<p>TODO: Check Data must be uploaded first bfore describing the
+data.</p>
+<pre><code>glEnableVertexAttribArray(0);
+glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(vertex), (void*)(offsetof(vertex, pos));
+/* DSA */
+glEnableVertexArrayAttrib(vao, 0);
+glVertexArrayAttribFormat(vao, 0, 3, GL_FLOAT, GL_FALSE, offsetof(vertex, pos));
+glVertexArrayAttribBinding(vao, 0, 0);</code></pre>
+<h2 id="rendering">Rendering</h2>
+<script src="../js/darktoggle.js"></script>
+</body>
+</html>
