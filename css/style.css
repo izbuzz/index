@@ -162,7 +162,7 @@ grid-item {
     transition: 0.5s;
 }
 
-grid-item:hover .box:hover {
+grid-item:hover, .box:hover {
     color: var(--sel-fg);
     background-color: var(--sel-bg);
 
