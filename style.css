@@ -1,7 +1,74 @@
-/* As many styles as possible are stored here. While separating stylesheets per
-   html is useful for larger projects, this one is too small to benefit as the
-   majority of the styling are global modifications. And larger projects, too,
-   will minify and combine their stylesheets when pushing to production. */
+/* all colors used for the website */
+:root {
+  --bg: #f2ecbc;
+  --fg: #545464;
+
+  --sel-bg: #d6c98a;
+  --sel-fg: #373759;
+
+  --alt-bg: #e7dba0;
+  /* --shadow: #181616; */
+  --shadow: #aea8a8;
+
+  /* other colors */
+  --green: #6F894E;
+  --blue: #8ba4b0;
+  --red: #4D699B;
+
+  /* add transition between color change */
+  transition: background-color 0.6s ease, color 1s ease;
+}
+
+/* automatically handle first visits by using user's os settings */
+@media(prefers-color-scheme: dark) {
+  :root {
+    --bg: #1F1F28;
+    --fg: #C5C9C5;
+
+    --sel-bg: #383735;
+    --sel-fg: #c8c093;
+
+    --alt-bg: #2a2a37;
+    --shadow: #181616;
+
+    --green: #8a9a7b;
+    --blue: #8ba4b0;
+    --red: #c4746e;
+
+    transition: background-color 0.6s ease, color 1s ease;
+  }
+}
+
+:root.light-mode {
+  --bg: #f2ecbc;
+  --fg: #545464;
+
+  --sel-bg: #d6c98a;
+  --sel-fg: #373759;
+
+  --alt-bg: #e7dba0;
+  --shadow: #aea8a8;
+
+  --green: #6F894E;
+  --blue: #8ba4b0;
+  --red: #4D699B;
+
+}
+
+:root.dark-mode {
+  --bg: #1F1F28;
+  --fg: #C5C9C5;
+
+  --sel-bg: #383735;
+  --sel-fg: #c8c093;
+
+  --alt-bg: #2a2a37;
+  --shadow: #181616;
+
+  --green: #8a9a7b;
+  --blue: #8ba4b0;
+  --red: #c4746e;
+}
 
 /* || Global Modifications */
 body {
