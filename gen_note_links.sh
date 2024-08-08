@@ -1,0 +1,50 @@
+#!/bin/env bash
+
+# Reads markdown files from "dir" and parses out any files with a front matter.
+# A series of href links is constructed and echoed out. The links are in the
+# form of:
+#
+# ${date}\n ${link with title}\n
+#
+# Date must be in the format: YYYY MMM DD such as 2026 Mar 24.
+# This allows this script to reliably sort the note references by date.
+
+dir=$1
+notes=""
+
+title_re="title:\s+(.+)"
+date_re="date:\s+(.+)"
+
+for file in "${dir}"/*.md; do
+  if [ -e "$file" ]; then
+    front_matter_start=false
+    title=""
+    date=""
+    while read -r line; do
+      if [[ $front_matter_start = false && $line != "---" ]]; then
+	echo "${file} does not have a front matter start!" >&2
+	break
+      fi
+      if [[ $line =~ $title_re ]]; then
+	title=${BASH_REMATCH[1]}
+      fi
+      if [[ $line =~ $date_re ]]; then
+	date=${BASH_REMATCH[1]}
+      fi
+      if [[ $front_matter_start = true && $line = "---" ]]; then
+	if [[ -n $title && -n $date ]]; then
+	  notes+="<div>${date}<br><a href=\"${file}\">${title}</a></div><br>"
+	  notes+=$'\n'
+	  # notes+="${date}${file}${title}"
+	else
+	  echo "Could not find date and time in ${file}!" >&2
+	fi
+      fi
+      front_matter_start=true
+    done < "$file"
+  fi
+done
+
+# Split on "<" which we created using the <br>, since the date is first we do
+# not have to worry about the title having <'s and causing issues.
+sort -r -t "<" -k 1.1,1.4nr -k 1.6,1.8Mr -k 1.10,1.11nr <<< "$notes"
