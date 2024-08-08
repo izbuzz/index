@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Web Setup</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="../style.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<script src="../js/dark.js"></script>
+</head>
+<body>
+<nav id="navbar">
+  <a href="../index.html">~</a>
+  <a href="../notes.html">notes</a>
+  <a href="../about.html">about</a>
+  <button id="darkmode-toggle">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="light-icon"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="dark-icon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+  </button>
+</nav>
+<header id="title-block-header">
+<h1 class="title">Web Setup</h1>
+<p class="date">Written on 2024 Aug 08</p>
+</header>
+<h2 id="notes">Notes</h2>
+<p>Notes for how to setup this website. Unfortunately or fortunately, no
+static site generators (ssg) are used. Maybe in the future hugo, 11ty,
+or even zola might be used. But for now, since the notes are minimal and
+I do not see myself churning out 10 bajillion notes, this setup is
+simple and should suffice.</p>
+<h3 id="components">Components</h3>
+<p>There are four dependencies:</p>
+<ul>
+<li>sed (GNU)</li>
+<li>make</li>
+<li>pandoc</li>
+<li>bash</li>
+</ul>
+<p>And three places of interest</p>
+<ul>
+<li>Makefile: this is where the .md to .html conversion takes place</li>
+<li>templates dir: directory for templates used by pandoc and notes
+file</li>
+<li>gen_note_links: a script which generates hrefs for the notes based
+on the front matter</li>
+</ul>
+<h3 id="variables">Variables</h3>
+<p>Inside the Makefile there are these variables</p>
+<pre class="make"><code>NOTES  = $(wildcard notes/*.md)
+OUTPUT = $(NOTES:.md=.html)
+
+NOTES_TEMPLATE = templates/notes.html
+HTML_TEMPLATE  = templates/template.html
+CSS_TEMPLATE   = style.css</code></pre>
+<p><code>NOTES</code> is where the directory of where .md file should be
+searched. Currently the <code>OUTPUT</code> is in the same directory and
+converts the markdown in to html files.</p>
+<p>The templates files are self explanatory. Html template and css
+templates for the notes, and the <code>NOTES_TEMPLATE</code> for the
+landing page.</p>
+<p>Note the <code>NOTES_TEMPLATE</code> is actually not a pandoc
+template but a custom template defined specifically for inserting hrefs.
+It has an element <code>{NOTES}</code> which is then sed’ed with the
+appropriate links.</p>
+<h3 id="targets">Targets</h3>
+<p>The Makefile only has three targets</p>
+<ol type="1">
+<li>all</li>
+<li>notes</li>
+<li>clean</li>
+</ol>
+<p>Calling <code>all</code> converts any changed .md files into .html
+files. <code>notes</code> regenerates the links for the notes landing
+page. <code>clean</code>, well, cleans… the files.</p>
+<h3 id="process">Process</h3>
+<p>So the steps for publishing are</p>
+<ol type="1">
+<li>Write a .md file in the notes directory, including the front matter
+(title and date)</li>
+<li>Run <code>make</code></li>
+<li>Run <code>make notes</code> if the links got deleted, added, or
+changed</li>
+<li>Profit?</li>
+</ol>
+<h2 id="end">End</h2>
+<p>That is about it… fairly simple… let us see how long this lasts.</p>
+<script src="../js/darktoggle.js"></script>
+<script src="../js/dark.js"></script>
+</body>
+</html>
