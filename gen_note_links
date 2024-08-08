@@ -12,6 +12,11 @@
 dir=$1
 notes=""
 
+if [[ -z "$dir" ]]; then
+  echo "Please specify a directory!"
+  exit 1
+fi
+
 title_re="title:\s+(.+)"
 date_re="date:\s+(.+)"
 
@@ -33,9 +38,8 @@ for file in "${dir}"/*.md; do
       fi
       if [[ $front_matter_start = true && $line = "---" ]]; then
 	if [[ -n $title && -n $date ]]; then
-	  notes+="<div>${date}<br><a href=\"${file}\">${title}</a></div><br>"
+	  notes+="<div>${date}<br><a href=\"${file/%md/html}\">${title}</a></div><br>"
 	  notes+=$'\n'
-	  # notes+="${date}${file}${title}"
 	else
 	  echo "Could not find date and time in ${file}!" >&2
 	fi
