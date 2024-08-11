@@ -1,3 +1,0 @@
-#!/bin/env sh
-pandoc -s --toc --template=templates/template.html --css=../css/color.css \
-       --css=../templates/template.css $1 -o "notes/${1%.*}.html"
