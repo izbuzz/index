@@ -1,56 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>about</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="js/dark.js"></script>
-</head>
-<body>
-  <nav>
-    <a href="index.html">~</a>
-    <a href="notes.html">notes</a>
-    <a href="about.html">about</a>
-    <button id="darkmode-toggle">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="light-icon"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="dark-icon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-    </button>
-  </nav>
-  <div>
-    <h3>About Me</h3>
-    A student interested in computer science and physics. Currently enjoying
-    system-level languages and programming and a little drop of android development.
-    Making projects to scratch my own itch.
-    <br><br>
-    Most of my projects are on github. There is no real pattern except for the
-    fact I enjoy system level languages and TUI programs. Expect a good chunk of rust, c and
-    cpp.
-    <br><br>
-    You can find the source for this website <a
-      href="https://github.com/wispl/index">here</a>. Contacts are right below
-    this line.
-  </div>
-  <br>
-  <div>
-    <div class="row">
-      <div class="box"><a href="https://github.com/wispl">github</a></div>
-    </div>
-  </div>
-  <br><br>
-  <grid-container>
-    <grid-item large>c</grid-item>
-    <grid-item medium>chess</grid-item>
-    <grid-item small>drawing</grid-item>
-    <grid-item medium>anki</grid-item>
-    <grid-item large>neovim</grid-item>
-    <grid-item small>languages</grid-item>
-    <grid-item medium>cpp</grid-item>
-    <grid-item small>kotlin</grid-item>
-    <grid-item small>js</grid-item>
-    <grid-item medium>physics</grid-item>
-    <grid-item medium>metal & rock</grid-item>
-  </grid-container>
-  <script src="js/darktoggle.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>about</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="js/dark.js"></script>
+  </head>
+  <body>
+    <nav class="row row-gap row-start row-stretch" id="nav_margin">
+      <div class="row">
+	<div class="medium_spacer space_navbar"></div>
+	<div>&nbsp;</div>
+	<div class="small_spacer space_navbar"></div>
+      </div>
+      <a class="flatbutton flatbutton-minwidth-large row row-start" href="index.html">
+	<div class="square_icon"></div> HOME
+      </a>
+      <a class="flatbutton flatbutton-minwidth-large row row-start" href="notes.html">
+	<div class="square_icon"></div> ARCHIVE
+      </a>
+      <a class="flatbutton flatbutton-minwidth-large row row-start" href="notes.html">
+	<div class="square_icon"></div> NOTES
+      </a>
+      <a class="flatbutton flatbutton-minwidth-large row row-start" href="about.html">
+	<div class="square_icon"></div> ABOUT
+      </a>
+      <button id="darkmode-toggle">
+	<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="light-icon"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+	<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="dark-icon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+      </button>
+    </nav>
+
+    <main class="content">
+      <h1 class="margin_bottom-large">ABOUT</h1>
+      <div class="row row-gap-larger row-stretch margin_bottom-large">
+	<div class="surface surface-pad surface-shadow column">
+	  <div class="hline"></div>
+	  <p class="surface-text">
+	    Hobbies : chess, tetris, minesweeper(?!?)<br>
+	    Likes : TUI, minimalism, C<br>
+	    Dislikes : C<br><br>
+
+	    A student interested in computer science and physics.<br>
+	    Currently studing aerospace engineering.<br>
+	    And also some programming on the side.
+
+	    <div class="hline hline-margin_bottom"></div>
+	    - TERMINAL - <br>
+	    <div class="square"></div>
+	    <div class="square"></div>
+	    <div class="square"></div>
+	    <div class="square"></div>
+	  </p>
+	  <div class="hline"></div>
+	</div>
+	<div class="surface surface-shadow">
+	  <div class="header">System Info</div>
+	  <p class="monospace surface-text">
+     \\  \\ //     terminal foot
+    ==\\__\\/ //   os       NixOS
+      //   \\//    kernel   6.12.8
+   ==//     //==   de       river
+    //\\___//      shell    bash
+   // /\\  \\==    ide      nvim
+     // \\  \\     website  yes
+	  </p>
+	</div>
+      </div>
+
+      <div class="margin_bottom-large">
+	<div class="hline hline-dark"></div>
+	<h2 class="no_margin surface-pad">Code</h2>
+	<div class="hline hline-dark"></div>
+      </div>
+
+      <div class="row row-stretch row-start row-gap margin_bottom-large">
+	<div class="row">
+	 <div class="medium_spacer"></div>
+	 <div>&nbsp;</div>
+	 <div class="small_spacer"></div>
+	</div>
+	<div class="column column-gap">
+	  <a href="https://github.com/wispl" class="flatbutton flatbutton-minwidth-largest">
+	    <div class="square_icon"></div>GITHUB
+	  </a>
+	  <a href="https://github.com/wispl/nix" class="flatbutton flatbutton-minwidth-largest">
+	    <div class="square_icon"></div>DOTFILES
+	  </a>
+	</div>
+
+	<div class="surface surface-shadow align_self_end">
+	  <div class="header"><div class="square_icon"></div>Most Used Languages</div>
+
+	  <div class="surface-pad">
+	    <div class="hline"></div>
+	  </div>
+	  <div class="shade margin">
+	    <div class="row row-gap row-end surface-text-padvert">
+	      <div class="bar" style="height: 100px;"></div>
+	      <div class="bar" style="height:  60px;"></div>
+	      <div class="bar" style="height:  50px;"></div>
+	      <div class="bar" style="height:  43px;"></div>
+	      <div class="bar" style="height:  40px;"></div>
+	      <div class="bar" style="height:  38px;"></div>
+	    </div>
+	  </div>
+	  <div class="row row-gap surface-pad margin margin_bottom-large">
+	    <div class="bar-text">C</div>
+	    <div class="bar-text">Java</div>
+	    <div class="bar-text">Rust</div>
+	    <div class="bar-text">Lua</div>
+	    <div class="bar-text">Kotlin</div>
+	    <div class="bar-text">Cpp</div>
+	  </div>
+	</div>
+      </div>
+
+      <div class="surface surface-shadow row row-start row-stretch margin_bottom-large">
+	<div class="row">
+	 <div class="medium_spacer dark"></div>
+	 <div>&nbsp;</div>
+	 <div class="small_spacer dark"></div>
+	</div>
+	<div class="surface-text surface-text-padvert">
+	  The source of the website can found <a href="https://github.com/wispl/wispl.github.io">here</a>.
+	</div>
+      </div>
+
+      <script src="js/darktoggle.js"></script>
+    </main>
+  </body>
 </html>
