@@ -246,6 +246,10 @@ button {
   min-width: 100px;
 }
 
+.flatbutton-minwidth-larger {
+  min-width: 168px;
+}
+
 .flatbutton-minwidth-largest {
   min-width: 284px;
 }
@@ -295,6 +299,10 @@ button {
 .surface-text-padvert {
   padding-top: 12px;
   padding-bottom: 12px;
+}
+
+.widen {
+  width: 32%;
 }
 
 .surface-shadow {
