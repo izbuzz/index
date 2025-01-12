@@ -21,35 +21,46 @@ if [[ -z "$dir" ]]; then
   die "Please specify a directory!"
 fi
 
+trim() {
+  read -rd '' $1 <<<"${!1}"
+}
 
-title_re="title:\s+(.+)"
-date_re="date:\s+(.+)"
+parse_file() {
+  local file=$1
+
+  local start=false
+  local title=""
+  local date=""
+  while read -r line; do
+    if [[ $start == false ]]; then
+      if [[ $line == "---" ]]; then
+	start=true
+	continue
+      else
+	die "No front matter found at the start for ${file}! It might be missing a '---'."
+      fi
+    fi
+
+    if [[ $line == title:* ]]; then
+      title="${line#"title:"}"
+      trim title
+    elif [[ $line == date:* ]]; then
+      date="${line#"date:"}"
+      trim date
+    elif [[ $line = "---" ]]; then
+      if [[ -n $title && -n $date ]]; then
+	year="${date:0:4}"
+	notes["$year"]+="${date};${file/%md/html};${title}"$'\n'
+      else
+	die "Could not find name and date in front matter of ${file}!"
+      fi
+    fi
+  done < "$file"
+}
 
 for file in "${dir}"/*.md; do
   if [ -e "$file" ]; then
-    front_matter_start=false
-    title=""
-    date=""
-    while read -r line; do
-      if [[ $front_matter_start = false && $line != "---" ]]; then
-	die "${file} does not have a front matter start!"
-      fi
-      if [[ $line =~ $title_re ]]; then
-	title=${BASH_REMATCH[1]}
-      fi
-      if [[ $line =~ $date_re ]]; then
-	date=${BASH_REMATCH[1]}
-      fi
-      if [[ $front_matter_start = true && $line = "---" ]]; then
-	if [[ -n $title && -n $date ]]; then
-	  notes+="<div>${date}<br><a href=\"${file/%md/html}\">${title}</a></div><br>"
-	  notes+=$'\n'
-	else
-	  die "Could not find date and time in ${file}!"
-	fi
-      fi
-      front_matter_start=true
-    done < "$file"
+    parse_file "$file"
   fi
 done
 
