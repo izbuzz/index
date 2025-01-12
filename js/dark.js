@@ -1,12 +1,12 @@
-// get the user's preferences, may be null 
-// if they have not toggled a theme yet
-const theme = localStorage.getItem("theme");
+const theme = localStorage.getItem("dark");
+const colorswitch = document.querySelector("#colorswitch");
 
-// toggle scheme based on user choice
-if (theme === "dark") {
-  document.documentElement.classList.toggle("dark-mode");
-} else if (theme === "light") {
-  document.documentElement.classList.toggle("light-mode");
-}
-// if theme is null, the theme will be chosen based on
-// the user's OS preferences via prefers-color-scheme
+colorswitch.checked = (theme === "true")
+
+colorswitch.addEventListener("change", function(e) {
+    if (e.currentTarget.checked === "true") {
+	localStorage.setItem("dark", "true");
+    } else {
+	localStorage.setItem("dark", "false");
+    }
+})
