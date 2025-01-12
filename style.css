@@ -108,7 +108,7 @@ button {
 }
 
 #nav_margin {
-  max-width: 60%;
+  max-width: 56%;
   margin: 0 auto;
   margin-top: 24px;
 }
@@ -132,6 +132,10 @@ button {
 
 .center_text {
   text-align: center;
+}
+
+.text-light {
+  color: var(--surface);
 }
 
 .align_self_end {
@@ -268,7 +272,7 @@ button {
 
 .content {
   height: 100%;
-  max-width: 60%;
+  max-width: 56%;
   margin: 0 auto;
   padding-bottom: 24px;
 }
