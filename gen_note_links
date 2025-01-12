@@ -9,17 +9,12 @@
 # Date must be in the format: YYYY MMM DD such as 2026 Mar 24.
 # This allows this script to reliably sort the note references by date.
 
-dir=$1
 notes=""
 
 die() {
       echo "$1"
       exit 2
 }
-
-if [[ -z "$dir" ]]; then
-  die "Please specify a directory!"
-fi
 
 trim() {
   read -rd '' $1 <<<"${!1}"
@@ -49,8 +44,7 @@ parse_file() {
       trim date
     elif [[ $line = "---" ]]; then
       if [[ -n $title && -n $date ]]; then
-	year="${date:0:4}"
-	notes["$year"]+="${date};${file/%md/html};${title}"$'\n'
+	notes+="${date};${file/%md/html};${title}"$'\n'
       else
 	die "Could not find name and date in front matter of ${file}!"
       fi
@@ -58,12 +52,44 @@ parse_file() {
   done < "$file"
 }
 
-for file in "${dir}"/*.md; do
-  if [ -e "$file" ]; then
-    parse_file "$file"
-  fi
-done
+main() {
+  dir=$1
 
-# Split on "<" which we created using the <br>, since the date is first we do
-# not have to worry about the title having <'s and causing issues.
-sort -r -t "<" -k 1.1,1.4nr -k 1.6,1.8Mr -k 1.10,1.11nr <<< "$notes"
+  if [[ -z "$dir" ]]; then
+    die "Please specify a directory!"
+  fi
+
+  for file in "${dir}"/*.md; do
+    if [ -e "$file" ]; then
+      parse_file "$file"
+    fi
+  done
+
+  html=""
+  year=""
+  while IFS=$'\n' read -r note; do
+    IFS=";"
+    data=($note)
+
+    date="${data[0]}"
+    file="${data[1]}"
+    title="${data[2]}"
+
+    if [[ -n $year ]]; then
+      html+="</div>"
+    fi
+
+    curr="${date:0:4}"
+    if [[ $curr != $year ]]; then
+      html+="<h2>${curr}</h2><div>"
+      year="${curr}"
+    fi
+
+    html+="<a href=\"${file/md/html}\">${title}${date}</a>"
+  done <<< $(sort -srk 1 -t ";" <<< "$notes")
+  unset IFS
+
+  echo "$html"
+}
+
+main "$1"
