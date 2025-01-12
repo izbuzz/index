@@ -75,17 +75,31 @@ main() {
     file="${data[1]}"
     title="${data[2]}"
 
-    if [[ -n $year ]]; then
-      html+="</div>"
-    fi
-
     curr="${date:0:4}"
     if [[ $curr != $year ]]; then
-      html+="<h2>${curr}</h2><div>"
+      if [[ -n $year ]]; then
+	html+="</div>"
+	html+="</div>"
+      fi
+
+      html+="<h2>${curr}</h2>"
+
+      html+="<div class='row row-start row-stretch row-gap'>"			# need close
+	html+="<div class='row'>"
+	  html+="<div class='medium_spacer space_navbar'></div>"
+	  html+="<div>&nbsp;</div>"
+	  html+="<div class='small_spacer space_navbar'></div>"
+	html+="</div>"
+	html+="<div class='column column-gap'>"					# need close
       year="${curr}"
     fi
 
-    html+="<a href=\"${file/md/html}\">${title}${date}</a>"
+    html+="<a class='flatbutton flatbutton-minwidth-largest' href='${file/md/html}'>"
+      html+="<div class='row row-start'>"
+	html+="<div class=square_icon></div>${title}${date}"
+      html+="</div>"
+    html+="</a>"
+
   done <<< $(sort -srk 1 -t ";" <<< "$notes")
   unset IFS
 
