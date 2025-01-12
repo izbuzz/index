@@ -11,6 +11,8 @@
 
 notes=""
 
+declare -A months
+
 die() {
       echo "$1"
       exit 2
@@ -96,7 +98,7 @@ main() {
 
     html+="<a class='flatbutton flatbutton-minwidth-largest' href='${file/md/html}'>"
       html+="<div class='row row-start'>"
-	html+="<div class=square_icon></div>${title}${date}"
+	html+="<div class=square_icon></div>${title}<div class='align_self_end'>$(date -d "${date}" +'%b %d')</div>"
       html+="</div>"
     html+="</a>"
 
