@@ -221,6 +221,27 @@ button {
   background-color: var(--shade);
   padding: 4px 0px;
   padding-left: 8px;
+  position: relative;
+}
+
+.flatbutton:hover {
+  background-color: var(--dark);
+  color: var(--surface);
+  outline: 1px dash var(--dark);
+}
+
+.flatbutton:hover:before {
+  content: '';
+  /* top: -0.2rem; */
+  /* bottom: -0.2rem; */
+  top: -4px;
+  bottom: -4px;
+  border: solid var(--dark);
+  border-width: 0.1rem 0;
+
+  position: absolute;
+  left: 0;
+  right: 0;
 }
 
 .flatbutton-minwidth-large {
