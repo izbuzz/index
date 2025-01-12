@@ -232,8 +232,6 @@ button {
 
 .flatbutton:hover:before {
   content: '';
-  /* top: -0.2rem; */
-  /* bottom: -0.2rem; */
   top: -4px;
   bottom: -4px;
   border: solid var(--dark);
