@@ -132,9 +132,14 @@ a {
 
 .content {
   height: 100%;
-  max-width: 56%;
+  max-width: 800px;
   margin: 0px auto;
   padding-bottom: 24px;
+
+  @media screen and (max-width: 800px) {
+    max-width: 100%;
+    margin: 0 1vw;
+  }
 }
 
 .content-center {
@@ -158,6 +163,10 @@ a {
   align-items: center;
   justify-content: center;
   width: auto;
+
+  @media screen and (max-width: 600px) {
+    flex-wrap: wrap;
+  }
 }
 
 .row-grow {
@@ -165,7 +174,7 @@ a {
 }
 
 .row-gap {
-  gap: 20px;
+  gap: clamp(6px, 2vw, 20px);
 }
 
 .row-gap-larger {
