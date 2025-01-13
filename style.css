@@ -160,9 +160,10 @@ a {
 }
 
 .square {
+  margin: 0px 4px;
   width: 4px;
   height: 4px;
-  background: var(--fg);
+  background: var(--shade);
 }
 
 .square_icon {
