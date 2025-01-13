@@ -328,12 +328,6 @@ a {
   width: 30px;
 }
 
-.links {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
 [aria-current="page"] {
   background-color: var(--dark);
   color: var(--surface);
