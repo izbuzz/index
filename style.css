@@ -6,7 +6,6 @@ body {
 
   --fg:        #666256;
   --fg-invert: #cdc7b0;
-  --colorlabel: "Dark";
 
   @media(prefers-color-scheme: dark) {
     --surface:   #1e1d23;
@@ -77,10 +76,6 @@ a {
   width: 1px;
   height: 1px;
   overflow: hidden;
-}
-
-a {
-  color: inherit;
 }
 
 .icon {
@@ -219,10 +214,6 @@ a {
   position: absolute;
   left: 0;
   right: 0;
-}
-
-.flatbutton-minwidth-large {
-  min-width: 100px;
 }
 
 .flatbutton-minwidth-larger {
