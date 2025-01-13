@@ -204,6 +204,10 @@ a {
   background-color: var(--dark);
   color: var(--surface);
   outline: 1px dash var(--dark);
+
+  .square_icon {
+    background: var(--surface);
+  }
 }
 
 .flatbutton:hover:before {
@@ -322,6 +326,16 @@ a {
   transform: rotate(55deg);
   text-align: center;
   width: 30px;
+}
+
+[aria-current="page"] {
+    background-color: var(--dark);
+    color: var(--surface);
+    outline: 1px dash var(--dark);
+
+  .square_icon {
+    background: var(--surface);
+  }
 }
 
 @media screen and (min-width: 800px) {
