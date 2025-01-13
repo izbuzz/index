@@ -326,9 +326,9 @@ a {
 }
 
 [aria-current="page"] {
-    background-color: var(--dark);
-    color: var(--surface);
-    outline: 1px dash var(--dark);
+  background-color: var(--dark);
+  color: var(--surface);
+  outline: 1px dash var(--dark);
 
   .square_icon {
     background: var(--surface);
