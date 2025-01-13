@@ -1,6 +1,6 @@
 body {
-  --surface:   #dad4bb;
-  --bg:        #cdc8b0;
+  --surface:   #d6d0b8;
+  --bg:        #c6c1aa;
   --shade:     #b4af9a;
   --dark:      #4b483f;
 
@@ -159,11 +159,14 @@ a {
 
 .row {
   display: flex;
-  flex-wrap: wrap;
 
   align-items: center;
   justify-content: center;
   width: auto;
+}
+
+.row-wrap {
+  flex-wrap: wrap
 }
 
 .row_item-grow {
