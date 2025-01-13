@@ -25,11 +25,6 @@ body {
 
   background-color: var(--bg);
   color: var(--fg);
-
-  min-height: 100vh;
-
-  margin: auto;
-  padding: 0px;
 }
 
 body:has(#colorswitch:checked) {
@@ -121,7 +116,7 @@ a {
 
 .fixed_width_column {
   display: grid;
-  height: 100vh;
+  min-height: 80vh;
 }
 
 .fixed_width_column-center {
