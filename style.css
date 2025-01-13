@@ -53,11 +53,9 @@ a {
   flex-wrap: nowrap;
 
   height: 100%;
-  max-width: 56%;
-  margin: 0 auto;
+  max-width: 800px;
+  margin: 0px auto;
   margin-top: 24px;
-
-  gap: clamp(6px, 2vw, 20px);
 
   .flatbutton {
     min-width: clamp(48px, 15vw, 100px);
@@ -66,6 +64,7 @@ a {
   @media screen and (max-width: 800px) {
     max-width: 100%;
     margin: 0 1vw;
+    margin-top: 24px;
   }
 }
 
@@ -160,25 +159,19 @@ a {
 
 .row {
   display: flex;
+  flex-wrap: wrap;
+
   align-items: center;
   justify-content: center;
   width: auto;
-
-  @media screen and (max-width: 600px) {
-    flex-wrap: wrap;
-  }
 }
 
-.row-grow {
-  width: 100%;
+.row_item-grow {
+  flex: 1 0 auto;
 }
 
 .row-gap {
   gap: clamp(6px, 2vw, 20px);
-}
-
-.row-gap-larger {
-  gap: 40px;
 }
 
 .row-stretch {
@@ -225,6 +218,10 @@ a {
   right: 0;
 }
 
+.flatbutton-minwidth {
+  min-width: 156px;
+}
+
 .flatbutton-minwidth-larger {
   min-width: 168px;
 }
@@ -232,7 +229,6 @@ a {
 .flatbutton-minwidth-largest {
   min-width: 284px;
 }
-
 
 .square {
   margin: 0px 4px;
@@ -283,6 +279,7 @@ a {
 
 .surface {
   background-color: var(--surface);
+  min-width: 256px;
 }
 
 .surface-pad {
@@ -341,41 +338,5 @@ a {
 
   .square_icon {
     background: var(--surface);
-  }
-}
-
-@media screen and (min-width: 800px) {
-  #TOC {
-    margin: 10% 0%;
-    font-weight: bold;
-
-    display: flex;
-    justify-content: justify;
-    position: fixed;
-    left: 0;
-    top: 0;
-  }
-}
-
-/* || Responsive */
-@media screen and (max-width: 600px) {
-  body {
-    font-size: 12px;
-    margin: 10px 5%;
-  }
-
-  /* reduce gaps on mobile */
-  nav {
-    gap: 15px;
-  }
-
-  #refs {
-    display: flex;
-    gap: 10px;
-  }
-
-  .box {
-    height: 60px;
-    width: 60px;
   }
 }
