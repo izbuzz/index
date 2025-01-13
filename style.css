@@ -46,10 +46,28 @@ body:has(#colorswitch:checked) {
   }
 }
 
+a {
+  color: inherit;
+}
+
 #nav_margin {
+  flex-wrap: nowrap;
+
+  height: 100%;
   max-width: 56%;
   margin: 0 auto;
   margin-top: 24px;
+
+  gap: clamp(6px, 2vw, 20px);
+
+  .flatbutton {
+    min-width: clamp(48px, 15vw, 100px);
+  }
+
+  @media screen and (max-width: 800px) {
+    max-width: 100%;
+    margin: 0 1vw;
+  }
 }
 
 #colorswitch {
@@ -66,8 +84,8 @@ a {
 }
 
 .icon {
-  width: 24px;
-  height: 24px;
+  width: clamp(15px, 3vw, 24px);
+  height: clamp(15px, 3vw, 24px);
 }
 
 .sun {
@@ -110,7 +128,7 @@ a {
 
 .align_self_end {
   margin-left: auto;
-  margin-right: 5%;
+  margin-right: 1%;
 }
 
 .widen {
@@ -171,46 +189,14 @@ a {
   align-items: flex-end;
 }
 
-.square {
-  margin: 0px 4px;
-  width: 4px;
-  height: 4px;
-  background: var(--shade);
-}
-
-.square_icon {
-  display: inline-block;
-  width: clamp(5px, 2.5vw, 15px);
-  height: clamp(5px, 2.5vw, 15px);
-
-  background: var(--fg);
-  margin-right: 4px;
-}
-
-.hline {
-  width: 100%;
-  height: 0px;
-  border: 1px solid var(--shade);
-}
-
-.hline-dark {
-  border: 1px solid var(--dark);
-}
-
-.hline-margin_bottom {
-  margin-bottom: 12px;
-}
-
-.hline-margin_top {
-  margin-top: 12px;
-}
-
 .flatbutton {
+  font-size: clamp(8px, 2.5vw, 15px);
+
+  position: relative;
+  padding: 2px 4px;
+
   text-decoration: none;
   background-color: var(--shade);
-  padding: 4px 0px;
-  padding-left: 8px;
-  position: relative;
 }
 
 .flatbutton:hover {
@@ -245,6 +231,42 @@ a {
 
 .flatbutton-minwidth-largest {
   min-width: 284px;
+}
+
+
+.square {
+  margin: 0px 4px;
+  width: 4px;
+  height: 4px;
+  background: var(--shade);
+}
+
+.square_icon {
+  display: inline-block;
+  width: clamp(5px, 2.5vw, 15px);
+  height: clamp(5px, 2.5vw, 15px);
+
+  background: var(--fg);
+  margin-right: 4px;
+  margin-left: 2px;
+}
+
+.hline {
+  width: 100%;
+  height: 0px;
+  border: 1px solid var(--shade);
+}
+
+.hline-dark {
+  border: 1px solid var(--dark);
+}
+
+.hline-margin_bottom {
+  margin-bottom: 12px;
+}
+
+.hline-margin_top {
+  margin-top: 12px;
 }
 
 .medium_spacer {
