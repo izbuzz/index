@@ -41,6 +41,15 @@ body:has(#colorswitch:checked) {
   --fg:        #666256;
   --fg-invert: #cdc7b0;
   --colorlabel: "Light";
+
+  .sun {
+    display: none;
+  }
+
+  .moon {
+    display: block;
+    color: var(--fg-invert);
+  }
 }
 
 a {
@@ -54,15 +63,25 @@ a {
 }
 
 #colorswitch {
-  position: absolute !important;
-  height: 1px;
+  appearance: none;
+  position: relative;
+  left: 50%;
   width: 1px;
+  height: 1px;
   overflow: hidden;
-  clip: rect(1px, 1px, 1px, 1px);
 }
 
-#colorlabel::after {
-  content: var(--colorlabel);
+.icon {
+  width: 24px;
+  height: 24px;
+}
+
+.sun {
+  display: block;
+}
+
+.moon {
+  display: none;
 }
 
 .margin {

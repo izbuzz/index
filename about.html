@@ -8,7 +8,6 @@
     <script src="js/dark.js"></script>
   </head>
   <body>
-    <input id="colorswitch" type="checkbox" name="colorswitch">
     <nav class="row row-gap row-start row-stretch" id="nav_margin">
       <div class="row">
 	<div class="medium_spacer space_navbar"></div>
@@ -27,7 +26,11 @@
       <a class="flatbutton flatbutton-minwidth-large row row-start" href="about.html">
 	<div class="square_icon"></div> ABOUT
       </a>
-      <label class="flatbutton flatbutton-minwidth-large align_self_end" id="colorlabel" for="colorswitch"></label>
+      <label id="colorlabel" class="row align_self_end" for="colorswitch">
+	<input id="colorswitch" type="checkbox" name="colorswitch">
+	<svg xmlns="http://www.w3.org/2000/svg" class="icon sun" fill="currentColor" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"/><path d="M120,40V16a8,8,0,0,1,16,0V40a8,8,0,0,1-16,0Zm8,24a64,64,0,1,0,64,64A64.07,64.07,0,0,0,128,64ZM58.34,69.66A8,8,0,0,0,69.66,58.34l-16-16A8,8,0,0,0,42.34,53.66Zm0,116.68-16,16a8,8,0,0,0,11.32,11.32l16-16a8,8,0,0,0-11.32-11.32ZM192,72a8,8,0,0,0,5.66-2.34l16-16a8,8,0,0,0-11.32-11.32l-16,16A8,8,0,0,0,192,72Zm5.66,114.34a8,8,0,0,0-11.32,11.32l16,16a8,8,0,0,0,11.32-11.32ZM48,128a8,8,0,0,0-8-8H16a8,8,0,0,0,0,16H40A8,8,0,0,0,48,128Zm80,80a8,8,0,0,0-8,8v24a8,8,0,0,0,16,0V216A8,8,0,0,0,128,208Zm112-88H216a8,8,0,0,0,0,16h24a8,8,0,0,0,0-16Z"/></svg>
+	<svg xmlns="http://www.w3.org/2000/svg" class="icon moon" fill="currentColor" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"/><path d="M235.54,150.21a104.84,104.84,0,0,1-37,52.91A104,104,0,0,1,32,120,103.09,103.09,0,0,1,52.88,57.48a104.84,104.84,0,0,1,52.91-37,8,8,0,0,1,10,10,88.08,88.08,0,0,0,109.8,109.8,8,8,0,0,1,10,10Z"/></svg>
+      </label>
     </nav>
 
     <main class="content">
@@ -93,7 +96,7 @@
 	</div>
 
 	<div class="surface surface-shadow widen">
-	  <div class="header">System Info</div>
+	  <h4 class="header no_margin">System Info</h4>
 	  <p class="text-light monospace row dark margin">
   \\  \\ //
  ==\\__\\/ //
@@ -115,7 +118,7 @@ website  yes
 	</div>
 
 	<div class="surface surface-shadow">
-	  <div class="header"><div class="square_icon"></div>Most Used Languages</div>
+	    <div class="header row row-start"><div class="square_icon"></div><h4 class="no_margin">Most Used Languages</h4></div>
 
 	  <div class="surface-pad">
 	    <div class="hline"></div>
