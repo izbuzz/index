@@ -4,8 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <meta name="dcterms.date" content="2024-08-08" />
-  <title>Web Setup</title>
+  <title>Vulkan</title>
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -57,110 +56,56 @@
   </nav>
 <main class="content">
 <header id="title-block-header">
-<h1 class="title">Web Setup</h1>
+<h1 class="title">Vulkan</h1>
 <div class="date row row-start">
 <svg xmlns="http://www.w3.org/2000/svg" class="icon" fill="currentColor" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"/><rect x="40" y="40" width="176" height="176" rx="8" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><line x1="176" y1="24" x2="176" y2="56" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><line x1="80" y1="24" x2="80" y2="56" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><line x1="40" y1="88" x2="216" y2="88" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><circle cx="128" cy="132" r="12"/><circle cx="172" cy="132" r="12"/><circle cx="84" cy="172" r="12"/><circle cx="128" cy="172" r="12"/><circle cx="172" cy="172" r="12"/></svg>
 <div>&nbsp;</div>
 <p>
-2024-08-08
+2025-01-13
 </p>
 </div>
-<div class="abstract row row-start row-gap row-stretch"">
-<!-- <div class="abstract-title">Abstract</div> -->
-<div class="row">
- <div class="medium_spacer"></div>
- <div>&nbsp;</div>
- <div class="small_spacer"></div>
-</div>
-<p>DIY site, or how I subjected myself to gymnastics create a
-website.</p>
-</div>
 </header>
-<p>Notes for how to setup this website. Unfortunately or fortunately, no
-static site generators were. No this is not hardcore, it is kind of
-brutal honestly. There is less between me and the notes. Close to the
-metal kind of thing… except I do not want to be close because the metal
-is a metal spike that is webdev.</p>
-<h2 id="components">Components</h2>
-<p>The core part of the setup is a lousy Makefile, whose main goal is to
-convert markdown files into html files using <code>pandoc</code>. Yes,
-the page you are reading right now used to be a markdown file.
-Horrifying. A lot of other static site generators do something similar,
-though probably without <code>pandoc</code>.</p>
-<p>The downsides of this <code>pandoc</code> method is likely speed and
-performance, but unless I have thousands of notes, this should scale
-pretty well. And I can just throw more threads at it. The bigger issue
-is indexing the notes.</p>
-<p>Indexing is done through a small bash script
-<code>index_notes</code>, which simply reads notes in some directory for
-a front matter. It then sorts the parsed front matter base on the date.
-Finally it groups the metadata in the same years. As it groups them, it
-generates html based on the data.</p>
-<p>The final step is the hardest. We use <code>sed</code> to replace the
-string <code>{NOTES}</code> in a html file which serves as a template,
-with the result of the <code>index_notes</code> script. So the only
-dependencies are</p>
-<ul>
-<li>make</li>
-<li>sed (GNU)</li>
-<li>pandoc</li>
-<li>bash</li>
-<li>sort</li>
-</ul>
-<p>Oh and there is also <code>index_archive</code> because for the blogs
-instead. The reason is because notes don’t really have a date since they
-are more of a living document and prone to be edited compared with
-blogs.</p>
-<h2 id="templates">Templates</h2>
-<p>I like differentiating notes from more opinionated pieces. This one
-is opinionated, yes. I keep pieces like this in <code>archive/</code>
-and notes in <code>notes/</code>. And so in the Makefile there are</p>
-<pre class="make"><code>NOTES := $(wildcard notes/*.md)
-BLOGS := $(wildcard blogs/*.md)
-
-ARCHIVE_INDEX := templates/archive.html
-NOTES_INDEX := templates/notes.html
-HTML := templates/template.html
-
-CSS := style.css</code></pre>
-<p>The templates themselves are literally just html files. In
-particular, <code>templates/template.html</code> is <code>pandoc</code>
-specific template. The rest are regular html files with something like
-<code>{NOTE}</code> inside. Yes, <code>sed</code> is used as a poor
-man’s templates.</p>
-<p>A call to <code>make all</code> turns all the notes and blogs into
-html and a call to <code>make index</code> creates the
-<code>archive.html</code> and <code>notes.html</code> which holds links
-to them.</p>
-<h2 id="process">Process</h2>
-<p>So the steps for publishing are</p>
-<ol type="1">
-<li>Write a .md file in the notes/blog directory, include the front
-matter (title and date)</li>
-<li>Run <code>make</code></li>
-<li>Run <code>make index</code> only when adding or removing</li>
-<li>Profit?</li>
-</ol>
-<h2 id="end">End</h2>
-<p>There a lot of cons with this setup, and I can definitely see why
-someone might use actual static site generators instead.</p>
-<ul>
-<li>For one, the nav bar is duplicated in every single file. There like
-6-7 files I have to edit manually</li>
-<li>The indexing is just not clean, duplicate logic is used to index the
-two types</li>
-<li>Actual templates will be awesome, especially since there are actual
-templating languages like nunjucks or liquid</li>
-</ul>
-<p>Wit regards to templates, right now the indexing scripts are absolute
-monstrosities to look at and debug. An actual template with support for
-something like <code>foreach( note, do_this )</code> would come a long
-way.</p>
-<p>The only benefit is the huge control I have over the stack. I might
-just explore static site generators which are less intrusive when I
-can’t take anymore.</p>
-<p>11ty seems like a good option?</p>
-<p>:)</p>
+<h1 id="vulkan">Vulkan</h1>
+<h2 id="startup">Startup</h2>
+<p>VkInstance -&gt; VkPhysicalDevice -&gt; VKDevice</p>
+<p><strong>VkInstance</strong> for validation layers, extensions, and
+loggers. Usually only one will suffice for most applications. Extensions
+can slow down the driver so only enable neccessary ones.</p>
+<p><strong>VkPhysicalDevice</strong> represents GPUs queried by
+VkInstance. No communication is allowed yet.</p>
+<p><strong>VKDevice</strong> is gained from VkPhysicalDevice and is used
+to communicate with the GPU. Most Vulkan commands require this.</p>
+<p>Vulkan allows manual multi-GPU configuration, multiple VKDevice can
+be made and assigned commands.</p>
+<p>Swapchain is optional (headless applications) and is the main way to
+present an image to the screen. They are internally lists of images but
+typically 2 or 3 are used for double or triple buffering. Present modes:
+* VK_PRESENT_MODE_IMMEDIATE_KHR * VK_PRESENT_MODE_FIFO_KHR *
+VK_PRESENT_MODE_FIFO_RELAXED_KHR * VK_PRESENT_MODE_MAILBOX_KHR</p>
+<h2 id="commands-and-queues">Commands and Queues</h2>
+<p>VkCommandBuffer is created from VkCommandPool Record VkCmds into the
+VkCommandBuffer. Then submit the buffer into a VkQueue.</p>
+<p>Command records are cheaps while submitting them are not
+(VkQueueSubmit). Multithreaded code will have a VkCommandPool and
+VkCommandBuffer each thread and submit commands one at a time
+(VkQueueSubmit is not threadsafe)</p>
+<p>Queues can have a different family, dictating the type of queue and
+supported commands.</p>
+<p>NOTE: Transfer-only queues are great for loading assets. Lifecycle:
+https://registry.khronos.org/vulkan/specs/1.2-extensions/html/chap6.html#commandbuffers-lifecycle</p>
+<h2 id="renderpass">Renderpass</h2>
+<p>Renderpasses are the main ways, besides compute commands to render to
+the screen. Renderpassees are made of subpasses, which are useful on
+mobile GPUs to optimize work out. On desktop, this is not much of an
+advantage, but there must be at least one subpass in a renderpass.</p>
+<p>Renderpasses will render into a framebuffer, which links the images
+to be rendered to.</p>
+<p>Image layouts dictate the state of images, as we have no control over
+how GPUs manipulate image layouts during processing. There are four
+layouts: * VK_IMAGE_LAYOUT_UNDEFINED *
+VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL (rendering commands) *
+VK_IMAGE_LAYOUT_PRESENT_SRC_KHR (rendering to screen) *
+VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL (reading from shaders)</p>
 </main>
 </body>
 </html>

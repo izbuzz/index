@@ -4,8 +4,8 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <meta name="dcterms.date" content="2024-08-08" />
-  <title>Web Setup</title>
+  <meta name="dcterms.date" content="2025-01-13" />
+  <title>Containers</title>
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -57,110 +57,78 @@
   </nav>
 <main class="content">
 <header id="title-block-header">
-<h1 class="title">Web Setup</h1>
+<h1 class="title">Containers</h1>
 <div class="date row row-start">
 <svg xmlns="http://www.w3.org/2000/svg" class="icon" fill="currentColor" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"/><rect x="40" y="40" width="176" height="176" rx="8" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><line x1="176" y1="24" x2="176" y2="56" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><line x1="80" y1="24" x2="80" y2="56" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><line x1="40" y1="88" x2="216" y2="88" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><circle cx="128" cy="132" r="12"/><circle cx="172" cy="132" r="12"/><circle cx="84" cy="172" r="12"/><circle cx="128" cy="172" r="12"/><circle cx="172" cy="172" r="12"/></svg>
 <div>&nbsp;</div>
 <p>
-2024-08-08
+2025-01-13
 </p>
 </div>
-<div class="abstract row row-start row-gap row-stretch"">
-<!-- <div class="abstract-title">Abstract</div> -->
-<div class="row">
- <div class="medium_spacer"></div>
- <div>&nbsp;</div>
- <div class="small_spacer"></div>
-</div>
-<p>DIY site, or how I subjected myself to gymnastics create a
-website.</p>
-</div>
 </header>
-<p>Notes for how to setup this website. Unfortunately or fortunately, no
-static site generators were. No this is not hardcore, it is kind of
-brutal honestly. There is less between me and the notes. Close to the
-metal kind of thing… except I do not want to be close because the metal
-is a metal spike that is webdev.</p>
-<h2 id="components">Components</h2>
-<p>The core part of the setup is a lousy Makefile, whose main goal is to
-convert markdown files into html files using <code>pandoc</code>. Yes,
-the page you are reading right now used to be a markdown file.
-Horrifying. A lot of other static site generators do something similar,
-though probably without <code>pandoc</code>.</p>
-<p>The downsides of this <code>pandoc</code> method is likely speed and
-performance, but unless I have thousands of notes, this should scale
-pretty well. And I can just throw more threads at it. The bigger issue
-is indexing the notes.</p>
-<p>Indexing is done through a small bash script
-<code>index_notes</code>, which simply reads notes in some directory for
-a front matter. It then sorts the parsed front matter base on the date.
-Finally it groups the metadata in the same years. As it groups them, it
-generates html based on the data.</p>
-<p>The final step is the hardest. We use <code>sed</code> to replace the
-string <code>{NOTES}</code> in a html file which serves as a template,
-with the result of the <code>index_notes</code> script. So the only
-dependencies are</p>
-<ul>
-<li>make</li>
-<li>sed (GNU)</li>
-<li>pandoc</li>
-<li>bash</li>
-<li>sort</li>
-</ul>
-<p>Oh and there is also <code>index_archive</code> because for the blogs
-instead. The reason is because notes don’t really have a date since they
-are more of a living document and prone to be edited compared with
-blogs.</p>
-<h2 id="templates">Templates</h2>
-<p>I like differentiating notes from more opinionated pieces. This one
-is opinionated, yes. I keep pieces like this in <code>archive/</code>
-and notes in <code>notes/</code>. And so in the Makefile there are</p>
-<pre class="make"><code>NOTES := $(wildcard notes/*.md)
-BLOGS := $(wildcard blogs/*.md)
-
-ARCHIVE_INDEX := templates/archive.html
-NOTES_INDEX := templates/notes.html
-HTML := templates/template.html
-
-CSS := style.css</code></pre>
-<p>The templates themselves are literally just html files. In
-particular, <code>templates/template.html</code> is <code>pandoc</code>
-specific template. The rest are regular html files with something like
-<code>{NOTE}</code> inside. Yes, <code>sed</code> is used as a poor
-man’s templates.</p>
-<p>A call to <code>make all</code> turns all the notes and blogs into
-html and a call to <code>make index</code> creates the
-<code>archive.html</code> and <code>notes.html</code> which holds links
-to them.</p>
-<h2 id="process">Process</h2>
-<p>So the steps for publishing are</p>
-<ol type="1">
-<li>Write a .md file in the notes/blog directory, include the front
-matter (title and date)</li>
-<li>Run <code>make</code></li>
-<li>Run <code>make index</code> only when adding or removing</li>
-<li>Profit?</li>
-</ol>
-<h2 id="end">End</h2>
-<p>There a lot of cons with this setup, and I can definitely see why
-someone might use actual static site generators instead.</p>
-<ul>
-<li>For one, the nav bar is duplicated in every single file. There like
-6-7 files I have to edit manually</li>
-<li>The indexing is just not clean, duplicate logic is used to index the
-two types</li>
-<li>Actual templates will be awesome, especially since there are actual
-templating languages like nunjucks or liquid</li>
-</ul>
-<p>Wit regards to templates, right now the indexing scripts are absolute
-monstrosities to look at and debug. An actual template with support for
-something like <code>foreach( note, do_this )</code> would come a long
-way.</p>
-<p>The only benefit is the huge control I have over the stack. I might
-just explore static site generators which are less intrusive when I
-can’t take anymore.</p>
-<p>11ty seems like a good option?</p>
-<p>:)</p>
+<h1 id="containers">Containers</h1>
+<p>Containers are used to isolate processes from a host system. The
+isolation can include the filesystem, network, processes, and resources.
+While containers can also be used for security reasons, a VM is more
+secure but at the cost of performance and overhead. Containers on the
+other hand, avoids the performance issues by relying on the host for
+resources, but using native OS features to restrict access.</p>
+<h2 id="chroot">Chroot</h2>
+<p>Chroot, short for change root, restricts the filesystem, only
+allowing a certain view of the filesystem. Injection of files and
+directories can be done through read-only mounts.</p>
+<p>See: <code>chroot</code></p>
+<h2 id="namespaces">Namespaces</h2>
+<p>However, processes inside the chroot can still access and manipulate
+processes outside. Namespaces provides isolation for the process tree,
+network, and mounts. Multiple namespaces can be created and join, to
+allow for example, sharing some resources from the host.</p>
+<p>For example, there are <code>PID</code> and <code>network</code>
+namespaces to isolate the process tree and network stack
+respectively.</p>
+<p>See: <code>unshare</code>, <code>nsenter</code></p>
+<h2 id="cgroups">Cgroups</h2>
+<p>Cgroups, short for control groups, allow restricting resources, such
+as memory or cpu, used by the container, and kills the processes as
+needed.</p>
+<p>Cgroups and their configuration can be found under
+<code>/sys/fs/cgroup/</code>. The PIDs of which the cgroup is applied to
+is in the the
+<code>/sys/fs/cgroup/cgroup_name/cgroup_config_name/task</code>
+file.</p>
+<h2 id="capabilities">Capabilities</h2>
+<p>Capabilities are like split-off powers of root and provides
+fine-grained controls of what a process can do when using root. It goes
+without saying that for containers, the less dangerous capabilities are
+granted, the better.</p>
+<p>See: <code>capsh</code></p>
+<h2 id="seccomp">Seccomp</h2>
+<p>Seccomp, short for secure computing, restricts what system calls a
+process can make. This is even more restrictive then capabilities.</p>
+<h2 id="linux-security-modules">Linux Security Modules</h2>
+<p>Abbreiviated as LSMs, are as their name implies, a series of modules
+for Linux to support security policies and modules.</p>
+<h3 id="mandatory-access-controls">Mandatory Access Controls</h3>
+<p>MAC, for short, restrict what could be accessed by a process,
+program, or threads. The restriction can be applied to files,
+directories, networks, memory, or devices. Attributes can be assigned to
+the restriction, such as read-only or write-only.</p>
+<p>Under Linux, <code>tomoyo</code>, <code>apparmor</code>,
+<code>selinux</code> are the prominent MACs. Apparmor operates on path
+while Selinux operates on inodes. Tomoyo is similar to Apparmor, but
+includes a self-learning profile stage where it attempts to creates
+restriction itself.</p>
+<h3 id="more">More</h3>
+<p><code>landlock</code>, <code>lockdown</code>, <code>yama</code>,
+<code>integrity</code>, <code>bpf</code></p>
+<h2 id="references">References</h2>
+<p><a
+href="https://ericchiang.github.io/post/containers-from-scratch/">Containers
+from scratch</a> <a
+href="https://www.lucavall.in/blog/barco-linux-containers-from-scratch-in-c">barco:
+Linux Containers From Scratch in C</a> <a
+href="https://www.panoptica.app/research/7-ways-to-escape-a-container">7
+Ways to Escape a Container</a></p>
 </main>
 </body>
 </html>

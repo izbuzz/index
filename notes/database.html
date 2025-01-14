@@ -4,8 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <meta name="dcterms.date" content="2024-08-08" />
-  <title>Web Setup</title>
+  <title>Databases</title>
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -57,110 +56,45 @@
   </nav>
 <main class="content">
 <header id="title-block-header">
-<h1 class="title">Web Setup</h1>
+<h1 class="title">Databases</h1>
 <div class="date row row-start">
 <svg xmlns="http://www.w3.org/2000/svg" class="icon" fill="currentColor" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"/><rect x="40" y="40" width="176" height="176" rx="8" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><line x1="176" y1="24" x2="176" y2="56" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><line x1="80" y1="24" x2="80" y2="56" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><line x1="40" y1="88" x2="216" y2="88" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><circle cx="128" cy="132" r="12"/><circle cx="172" cy="132" r="12"/><circle cx="84" cy="172" r="12"/><circle cx="128" cy="172" r="12"/><circle cx="172" cy="172" r="12"/></svg>
 <div>&nbsp;</div>
 <p>
-2024-08-08
+2025-01-13
 </p>
 </div>
-<div class="abstract row row-start row-gap row-stretch"">
-<!-- <div class="abstract-title">Abstract</div> -->
-<div class="row">
- <div class="medium_spacer"></div>
- <div>&nbsp;</div>
- <div class="small_spacer"></div>
-</div>
-<p>DIY site, or how I subjected myself to gymnastics create a
-website.</p>
-</div>
 </header>
-<p>Notes for how to setup this website. Unfortunately or fortunately, no
-static site generators were. No this is not hardcore, it is kind of
-brutal honestly. There is less between me and the notes. Close to the
-metal kind of thing… except I do not want to be close because the metal
-is a metal spike that is webdev.</p>
-<h2 id="components">Components</h2>
-<p>The core part of the setup is a lousy Makefile, whose main goal is to
-convert markdown files into html files using <code>pandoc</code>. Yes,
-the page you are reading right now used to be a markdown file.
-Horrifying. A lot of other static site generators do something similar,
-though probably without <code>pandoc</code>.</p>
-<p>The downsides of this <code>pandoc</code> method is likely speed and
-performance, but unless I have thousands of notes, this should scale
-pretty well. And I can just throw more threads at it. The bigger issue
-is indexing the notes.</p>
-<p>Indexing is done through a small bash script
-<code>index_notes</code>, which simply reads notes in some directory for
-a front matter. It then sorts the parsed front matter base on the date.
-Finally it groups the metadata in the same years. As it groups them, it
-generates html based on the data.</p>
-<p>The final step is the hardest. We use <code>sed</code> to replace the
-string <code>{NOTES}</code> in a html file which serves as a template,
-with the result of the <code>index_notes</code> script. So the only
-dependencies are</p>
+<h1 id="database">Database</h1>
+<h2 id="fundamentals">Fundamentals</h2>
+<p>https://tontinton.com/posts/database-fundementals/
+https://www.thenile.dev/blog/transaction-isolation-postgres</p>
+<p>The simplest database can be just writing to a file and then reading
+the file to get the results back. Databases, however, are more advanced,
+in order to provide</p>
 <ul>
-<li>make</li>
-<li>sed (GNU)</li>
-<li>pandoc</li>
-<li>bash</li>
-<li>sort</li>
+<li>Durability</li>
+<li>Atomicity</li>
+<li>Isolation</li>
+<li>Performance</li>
 </ul>
-<p>Oh and there is also <code>index_archive</code> because for the blogs
-instead. The reason is because notes don’t really have a date since they
-are more of a living document and prone to be edited compared with
-blogs.</p>
-<h2 id="templates">Templates</h2>
-<p>I like differentiating notes from more opinionated pieces. This one
-is opinionated, yes. I keep pieces like this in <code>archive/</code>
-and notes in <code>notes/</code>. And so in the Makefile there are</p>
-<pre class="make"><code>NOTES := $(wildcard notes/*.md)
-BLOGS := $(wildcard blogs/*.md)
-
-ARCHIVE_INDEX := templates/archive.html
-NOTES_INDEX := templates/notes.html
-HTML := templates/template.html
-
-CSS := style.css</code></pre>
-<p>The templates themselves are literally just html files. In
-particular, <code>templates/template.html</code> is <code>pandoc</code>
-specific template. The rest are regular html files with something like
-<code>{NOTE}</code> inside. Yes, <code>sed</code> is used as a poor
-man’s templates.</p>
-<p>A call to <code>make all</code> turns all the notes and blogs into
-html and a call to <code>make index</code> creates the
-<code>archive.html</code> and <code>notes.html</code> which holds links
-to them.</p>
-<h2 id="process">Process</h2>
-<p>So the steps for publishing are</p>
-<ol type="1">
-<li>Write a .md file in the notes/blog directory, include the front
-matter (title and date)</li>
-<li>Run <code>make</code></li>
-<li>Run <code>make index</code> only when adding or removing</li>
-<li>Profit?</li>
-</ol>
-<h2 id="end">End</h2>
-<p>There a lot of cons with this setup, and I can definitely see why
-someone might use actual static site generators instead.</p>
-<ul>
-<li>For one, the nav bar is duplicated in every single file. There like
-6-7 files I have to edit manually</li>
-<li>The indexing is just not clean, duplicate logic is used to index the
-two types</li>
-<li>Actual templates will be awesome, especially since there are actual
-templating languages like nunjucks or liquid</li>
-</ul>
-<p>Wit regards to templates, right now the indexing scripts are absolute
-monstrosities to look at and debug. An actual template with support for
-something like <code>foreach( note, do_this )</code> would come a long
-way.</p>
-<p>The only benefit is the huge control I have over the stack. I might
-just explore static site generators which are less intrusive when I
-can’t take anymore.</p>
-<p>11ty seems like a good option?</p>
-<p>:)</p>
+<p>The safety aspects of databases are refer to being ACID.</p>
+<h3 id="acid">ACID</h3>
+<p>ACID is an acronymn and refers to the database’s property of
+maintaining safe and consistent behavior during transactions.
+Transactions are a series of statements for interacting with databases,
+whether it be a series of writes, reads, or both.</p>
+<p><em>Atomicity</em>: transactions must either fail or succeed, no
+in-between. <em>Consistency</em>: transactions must bring a database
+from one consistent state to another. <em>Isolation</em>: transactions
+can be safely executed concurrently, that is the same result could be
+obtained if the transactions were executed sequentially.
+<em>Durability</em>: completed transactions should never disappear, for
+example in the event of a crash, and should store in non-volatile
+storage.</p>
+<h3 id="storage-engine">Storage Engine</h3>
+<p>Databases have to fast, and the fastest way is to rely on caches and
+memory, of which the L1 cache is the fastest.</p>
 </main>
 </body>
 </html>

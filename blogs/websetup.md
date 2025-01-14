@@ -81,7 +81,7 @@ There a lot of cons with this setup, and I can definitely see why someone might
 use actual static site generators instead.
 
 * For one, the nav bar is duplicated in every single file. There like 6-7 files I have to edit manually
-* The indexing is just not clean, with two scripts needed
+* The indexing is just not clean, duplicate logic is used to index the two types
 * Actual templates will be awesome, especially since there are actual templating languages like nunjucks or liquid
 
 Wit regards to templates, right now the indexing scripts are absolute
