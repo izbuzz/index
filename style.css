@@ -1,25 +1,4 @@
-body {
-  --surface:   #d6d0b8;
-  --bg:        #c6c1aa;
-  --shade:     #b4af9a;
-  --dark:      #4b483f;
-
-  --fg:        #46433a;
-  --fg-invert: #cdc7b0;
-  --code     : #887c65;
-
-  @media(prefers-color-scheme: dark) {
-    --surface:   #1e1d23;
-    --bg:        #1a191e;
-    --shade:     #29292E;
-    --dark:      #524a51;
-
-    --fg:        #aca9c2;
-    --fg-invert: #ded7d0;
-  }
-
-  /* transition: background-color 0.6s ease, color 1s ease; */
-
+:root {
   font-size: clamp(14px, 2vw, 17px);
   font-family: Roboto, Helvetica, sans-serif;
 
@@ -27,49 +6,8 @@ body {
   color: var(--fg);
 }
 
-body:has(#colorswitch:checked) {
-  --surface:   #2a2a37;
-  --bg:        #1f1f28;
-  --shade:     #363646;
-  --dark:      #54546D;
-
-  --fg:        #c6c1aa;
-  --fg-invert: #e4d794;
-
-  .sun {
-    display: none;
-  }
-
-  .system {
-    display: none;
-  }
-
-  .moon {
-    display: block;
-    color: var(--fg-invert);
-  }
-}
-
 html {
-  scrollbar-color: #4b483f #c6c1aa;
-}
-
-html:has(#colorswitch:checked) {
-  scrollbar-color: #54546D #1f1f28;
-}
-
-body:has(#colorswitch:indeterminate) {
-  .sun {
-    display: none;
-  }
-
-  .system {
-    display: block;
-  }
-
-  .moon {
-    display: none;
-  }
+  scrollbar-color: var(--shade) var(--bg);
 }
 
 a {
@@ -95,13 +33,13 @@ a {
   }
 }
 
-#colorswitch {
-  appearance: none;
-  position: relative;
-  left: 50%;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
+button {
+  border: none;
+  background-color: inherit;
+  font-size: inherit;
+  color: inherit;
+  padding: 0px;
+  margin: 0px;
 }
 
 .icon {
@@ -109,15 +47,7 @@ a {
   height: clamp(15px, 3vw, 24px);
 }
 
-.sun {
-  display: block;
-}
-
-.moon {
-  display: none;
-}
-
-.system {
+.auto, .moon, .sun {
   display: none;
 }
 

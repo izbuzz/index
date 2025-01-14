@@ -1,0 +1,11 @@
+:root {
+  color-scheme: light;
+  --surface:   #d6d0b8;
+  --bg:        #c6c1aa;
+  --shade:     #b4af9a;
+  --dark:      #4b483f;
+
+  --fg:        #46433a;
+  --fg-invert: #cdc7b0;
+  --code:      #887c65;
+}
