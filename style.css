@@ -28,13 +28,13 @@ body {
 }
 
 body:has(#colorswitch:checked) {
-  --surface:   #1e1d23;
-  --bg:        #1a191e;
-  --shade:     #29292E;
-  --dark:      #524a51;
+  --surface:   #2a2a37;
+  --bg:        #1f1f28;
+  --shade:      #363646;
+  --dark:     #54546D;
 
-  --fg:        #aca9c2;
-  --fg-invert: #ded7d0;
+  --fg:        #c6c1aa;
+  --fg-invert: #e4d794;
 
   .sun {
     display: none;
