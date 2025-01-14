@@ -1,12 +1,22 @@
-const theme = localStorage.getItem("dark");
-const colorswitch = document.querySelector("#colorswitch");
+const theme = localStorage.getItem("colorscheme") || "auto";
 
-colorswitch.checked = (theme === "true")
+const styleLight = document.querySelector("link[rel=stylesheet][media*=prefers-color-scheme][media*=light]");
+const styleDark = document.querySelector("link[rel=stylesheet][media*=prefers-color-scheme][media*=dark]");
 
-colorswitch.addEventListener("change", function(e) {
-    if (e.currentTarget.checked === "true") {
-	localStorage.setItem("dark", "true");
-    } else {
-	localStorage.setItem("dark", "false");
-    }
-})
+function toggle_theme(theme) {
+  let lightMedia;
+  let darkMedia;
+
+  if (theme === "auto") {
+    lightMedia = "(prefers-color-scheme: light)";
+    darkMedia = "(prefers-color-scheme: dark)";
+  } else {
+    lightMedia = (theme === "light") ? "all" : "not all";
+    darkMedia = (theme === "dark") ? "all" : "not all";
+  }
+
+  styleLight.media = lightMedia;
+  styleDark.media = darkMedia;
+}
+
+toggle_theme(theme)
