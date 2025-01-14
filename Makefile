@@ -6,16 +6,17 @@ BLOGS_HTML :=$(BLOGS:.md=.html)
 
 ARCHIVE_INDEX := templates/archive.html
 NOTES_INDEX := templates/notes.html
-HTML := templates/template.html
+NOTE_HTML := templates/note.html
+BLOG_HTML := templates/blog.html
 
 CSS := style.css
 
 # Converts .md files to .html fiels using the given templates
 notes/%.html: notes/%.md
-	pandoc -s --template=$(HTML) --css=../$(CSS) $< -o $@
+	pandoc -s --template=$(NOTE_HTML) --css=../$(CSS) $< -o $@
 
 blogs/%.html: blogs/%.md
-	pandoc -s --template=$(HTML) --css=../$(CSS) $< -o $@
+	pandoc -s --template=$(BLOG_HTML) --css=../$(CSS) $< -o $@
 
 .Phony: all clean index FORCE
 
