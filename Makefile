@@ -24,7 +24,8 @@ all: $(BLOGS_HTML) $(NOTES_HTML)
 
 # Regenerate the archive.html file using the template, replacing {NOTES} with links.
 index: FORCE
-	sed 's/{NOTES}/.\/index_archive "blogs"/e' ${ARCHIVE_INDEX} > archive.html
+	sed 's/{NOTES}/.\/index_dir "blogs"/e' ${ARCHIVE_INDEX} > archive.html
+	sed 's/{NOTES}/.\/index_dir "notes"/e' ${NOTES_INDEX} > notes.html
 
 # Remove all notes, keep the indexes however, as they may not need to be regenerated
 clean:

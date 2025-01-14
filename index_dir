@@ -10,6 +10,7 @@
 # This allows this script to reliably sort the note references by date.
 
 notes=""
+html=""
 
 declare -A months
 
@@ -54,20 +55,7 @@ parse_file() {
   done < "$file"
 }
 
-main() {
-  dir=$1
-
-  if [[ -z "$dir" ]]; then
-    die "Please specify a directory!"
-  fi
-
-  for file in "${dir}"/*.md; do
-    if [ -e "$file" ]; then
-      parse_file "$file"
-    fi
-  done
-
-  html=""
+index_archive() {
   year=""
   while IFS=$'\n' read -r note; do
     IFS=";"
@@ -104,6 +92,56 @@ main() {
 
   done <<< $(sort -srk 1 -t ";" <<< "$notes")
   unset IFS
+}
+
+index_notes() {
+  year=""
+  html+="<div class='row row-start row-stretch row-gap'>"			# need close
+  html+="<div class='row'>"
+  html+="<div class='medium_spacer space_navbar'></div>"
+  html+="<div>&nbsp;</div>"
+  html+="<div class='small_spacer space_navbar'></div>"
+  html+="</div>"
+  html+="<div class='column column-gap'>"					# need close
+  while IFS=$'\n' read -r note; do
+    IFS=";"
+    data=($note)
+
+    date="${data[0]}"
+    file="${data[1]}"
+    title="${data[2]}"
+
+    html+="<a class='flatbutton flatbutton-minwidth-largest' href='${file/md/html}'>"
+      html+="<div class='row row-start'>"
+	html+="<div class=square_icon></div>${title}<div class='align_self_end'>$(date -d "${date}" +'%b %d')</div>"
+      html+="</div>"
+    html+="</a>"
+
+  done <<< $(sort -srk 1 -t ";" <<< "$notes")
+  html+="</div>"
+  html+="</div>"
+  unset IFS
+}
+
+main() {
+  dir=$1
+
+  if [[ -z "$dir" ]]; then
+    die "Please specify a directory!"
+  fi
+
+  for file in "${dir}"/*.md; do
+    if [ -e "$file" ]; then
+      parse_file "$file"
+    fi
+  done
+
+  # hacky
+  if [[ $dir == "blogs" ]]; then
+    index_archive
+  else
+    index_notes
+  fi
 
   echo "$html"
 }
