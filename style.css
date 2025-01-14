@@ -30,8 +30,8 @@ body {
 body:has(#colorswitch:checked) {
   --surface:   #2a2a37;
   --bg:        #1f1f28;
-  --shade:      #363646;
-  --dark:     #54546D;
+  --shade:     #363646;
+  --dark:      #54546D;
 
   --fg:        #c6c1aa;
   --fg-invert: #e4d794;
@@ -48,6 +48,14 @@ body:has(#colorswitch:checked) {
     display: block;
     color: var(--fg-invert);
   }
+}
+
+html {
+  scrollbar-color: #4b483f #c6c1aa;
+}
+
+html:has(#colorswitch:checked) {
+  scrollbar-color: #54546D #1f1f28;
 }
 
 body:has(#colorswitch:indeterminate) {
@@ -398,6 +406,7 @@ code,
 pre,
 kbd {
   font-family: monospace;
+  line-height: 1.5rem;
   font-size: 100%;
   hyphens: none;
   color: var(--code);
@@ -412,4 +421,9 @@ pre code {
   color: var(--fg);
   font-size: 85%;
   position: relative;
+}
+
+.sourceCode {
+  background: var(--shade);
+  scrollbar-color: var(--dark) var(--shade);
 }
