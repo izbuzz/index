@@ -1,37 +1,29 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="$lang$" xml:lang="$lang$"$if(dir)$ dir="$dir$"$endif$>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-$for(author-meta)$
-  <meta name="author" content="$author-meta$" />
-$endfor$
-$if(date-meta)$
-  <meta name="dcterms.date" content="$date-meta$" />
-$endif$
-$if(keywords)$
-  <meta name="keywords" content="$for(keywords)$$keywords$$sep$, $endfor$" />
-$endif$
-$if(description-meta)$
-  <meta name="description" content="$description-meta$" />
-$endif$
-  <title>$if(title-prefix)$$title-prefix$ – $endif$$pagetitle$</title>
+  <meta name="dcterms.date" content="2025-01-12" />
+  <title>Hello World!</title>
   <style>
-    $styles.html()$
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
   </style>
-$for(css)$
-  <link rel="stylesheet" href="$css$" />
-$endfor$
-$for(header-includes)$
-  $header-includes$
-$endfor$
-$if(math)$
-$if(mathjax)$
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-$endif$
-  $math$
-$endif$
+  <link rel="stylesheet" href="../style.css" />
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
@@ -63,55 +55,25 @@ $endif$
       <svg xmlns="http://www.w3.org/2000/svg" class="icon system" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"/><circle cx="128" cy="128" r="96" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><line x1="128" y1="32" x2="128" y2="224" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><line x1="192" y1="56.45" x2="192" y2="199.55" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><line x1="160" y1="37.47" x2="160" y2="218.53" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/></svg>
     </label>
   </nav>
-$for(include-before)$
-$include-before$
-$endfor$
 <main class="content">
-$if(title)$
 <header id="title-block-header">
-<h1 class="title">$title$</h1>
+<h1 class="title">Hello World!</h1>
 <div class="date row row-start">
 <svg xmlns="http://www.w3.org/2000/svg" class="icon" fill="currentColor" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"/><rect x="40" y="40" width="176" height="176" rx="8" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><line x1="176" y1="24" x2="176" y2="56" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><line x1="80" y1="24" x2="80" y2="56" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><line x1="40" y1="88" x2="216" y2="88" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><circle cx="128" cy="132" r="12"/><circle cx="172" cy="132" r="12"/><circle cx="84" cy="172" r="12"/><circle cx="128" cy="172" r="12"/><circle cx="172" cy="172" r="12"/></svg>
 <div>&nbsp;</div>
 <p>
-$if(date)$
-$date$
-$endif$
+2025-01-12
 </p>
 </div>
-$if(subtitle)$
-<p class="subtitle">
-$subtitle$
-</p>
-$endif$
-$for(author)$
-<p class="author">$author$</p>
-$endfor$
-$if(abstract)$
-<div class="abstract row row-start row-gap row-stretch"">
-<!-- <div class="abstract-title">$abstract-title$</div> -->
-<div class="row">
- <div class="medium_spacer"></div>
- <div>&nbsp;</div>
- <div class="small_spacer"></div>
-</div>
-<p>$abstract$</p>
-</div>
-$endif$
 </header>
-$endif$
-$if(toc)$
-<nav id="$idprefix$TOC" role="doc-toc">
-$if(toc-title)$
-<h2 id="$idprefix$toc-title">$toc-title$</h2>
-$endif$
-$table-of-contents$
-</nav>
-$endif$
-$body$
-$for(include-after)$
-$include-after$
-$endfor$
+<h3 id="hello-world">Hello World!</h3>
+<p>And with that cliché line the website is online! Well it was online
+before but now it really is. The notes here are likely not going to have
+any substanstial or ground breaking content (I wish). But I like to
+write notes here so I can access them on a readable format when online
+and away from my computer. Hopefully there are all kinds of notes, not
+just programming.</p>
+<p>Here is to a successful start! Good bye!</p>
 </main>
 </body>
 </html>

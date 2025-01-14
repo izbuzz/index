@@ -1,6 +1,6 @@
 ---
 title: Hello World!
-date: 2024 Aug 08
+date: 2024-08-08
 ---
 
 ### Hello World!
