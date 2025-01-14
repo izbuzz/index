@@ -1,13 +1,18 @@
 # Personal Website
 
-What the title says.
+Inspired by the design and color in NieR:Automata. The dark color-scheme is
+from kanagawa.nvim.
 
-## Fonts
-The icons are the feather icon set found [here](https://feathericons.com/)
+## Publishing
 
-## CSS
+Uses an ad hoc Makefile + poor templating + pandoc system for publishing notes
 
-CSS was inspired by
-[latex-css](https://github.com/vincentdoerig/latex-css/tree/master) and
-[tufte-css](https://github.com/edwardtufte/tufte-css/tree/gh-pages), both of
-which have extraordinary typography and structure.
+## Acknowledgements
+
+* [NieR:Automata UI Design DevBLog](https://www.platinumgames.com/official-blog/article/9624)
+* [kanagawa.nvim](https://github.com/rebelot/kanagawa.nvim)
+* [Phosphor Icons](https://phosphoricons.com/)
+* [latex-css](https://github.com/vincentdoerig/latex-css/tree/master)
+* [tufte-css](https://github.com/edwardtufte/tufte-css/tree/gh-pages)
+* [dark mode script](https://htmhell.dev/adventcalendar/2024/9/)
+
